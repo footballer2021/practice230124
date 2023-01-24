@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
-import Counter1 from '../pages/counter1/eachPage/Counter1';
+import { Counter1 } from '../pages/counter1/eachPage/Counter1';
 
 const Router = () => {
   return (

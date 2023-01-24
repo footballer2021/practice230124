@@ -1,5 +1,6 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, createContext } from 'react'
 import Header from '../../../components/Header'
+import CounterPart from '../eachComponent/CounterPart'
 
 type StateType = {
     calc:string,
@@ -14,8 +15,16 @@ type ActionType = {
     toica:number
 }
 
+const myState = createContext({
+    calc:"add",
+    suica:0,
+    toica:0,
+    total:0
+ });
+
+ const myDispatch = createContext<React.Dispatch<ActionType>>( () => {} );
+
 const Counter1 = () => {
- const CALC_OPTIONS = ["add", "minus", "multiple","divide"];
  const initPoint = {
     calc:"add",
     suica:0,
@@ -35,35 +44,16 @@ const Counter1 = () => {
 
  const [state, dispatch ] = useReducer(calcReducer,initPoint);
 
- const numSChange =(e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({...state, suica:Number(e.target.value)});
- };
-
- const numTChange =(e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({...state, toica:Number(e.target.value)});
- };
-
- const calcChange =(e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch({...state, calc:e.target.value});
- };
-
   return (
     <>
         <Header/>
-        <div>
-            suica:<input type="number" name="suica" value={state.suica} onChange={numSChange} />
-        </div>
-        <div>
-            toica:<input type="number" name="toica" value={state.toica} onChange={numTChange} />
-        </div>
-        <select name="calc" onChange={calcChange}>
-            {
-                CALC_OPTIONS.map(calc => <option key={calc} value={calc}>{calc}</option>)
-            }
-        </select>
-        <h3>結果:{state.total}</h3>
+        <myState.Provider value={state}>
+            <myDispatch.Provider value={dispatch}>
+                <CounterPart />
+            </myDispatch.Provider>
+        </myState.Provider>
     </>
   )
 }
 
-export default Counter1
+export { Counter1, myState, myDispatch }
