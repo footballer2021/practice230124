@@ -1,8 +1,8 @@
-import React, { useContext} from 'react'
-import { myState } from '../eachPage/Counter1'
+import React from 'react'
+import { useContextState } from '../context/CounterContext'
 
 const CounterResult = () => {
- const state = useContext(myState);
+ const state = useContextState();
   return <h3>結果:{state.total}</h3>
 }
 

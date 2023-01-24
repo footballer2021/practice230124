@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import { myState,myDispatch } from '../eachPage/Counter1'
+import React from 'react'
+import { useContextDispatch, useContextState } from '../context/CounterContext'
 
 const CounterCalc = () => {
  const CALC_OPTIONS = ["add", "minus", "multiple","divide"];
- const dispatch= useContext(myDispatch);
- const state= useContext(myState);
+ const dispatch= useContextDispatch();
+ const state= useContextState();
   return (
     <>
         <div>
