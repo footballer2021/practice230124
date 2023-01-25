@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from "styled-components"
-import { activeTabContext, setActiveTabContext } from '../routes/Router'
+import { useActiveTabContext, useSetActiveTabContext } from '../context/TopContext'
 
 const Header = () => {
-  const activeTab = useContext(activeTabContext);
-  const setActiveTab = useContext(setActiveTabContext);
+  const activeTab = useActiveTabContext();
+  const setActiveTab = useSetActiveTabContext();
   
   return (
     <SHeader>
@@ -19,7 +19,6 @@ const Header = () => {
             Home
           </p>
         </Link>
-
         <Link to="/Counter1" >
           <p          
             className={`${activeTab === "Counter1" ? "active" : ""}`}
