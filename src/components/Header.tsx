@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import styled from "styled-components"
+import { activeTabContext, setActiveTabContext } from '../routes/Router'
 
 const Header = () => {
-  const [activeTab, setActiveTab] = useState("");
-
-  const location = useLocation();
-  useEffect(() => {
-    switch(location.pathname){
-      case "/": setActiveTab("Home"); break
-      case "Counter1": setActiveTab("Counter1"); break
-      case "Counter2": setActiveTab("Counter2"); break
-      case "Counter3": setActiveTab("Counter3"); break
-      default: setActiveTab("Home");
-      
-    }
-
-  }, [location]);
-
+  const activeTab = useContext(activeTabContext);
+  const setActiveTab = useContext(setActiveTabContext);
+  
   return (
     <SHeader>
       <p className="logo">React練習用</p>
@@ -30,8 +19,9 @@ const Header = () => {
             Home
           </p>
         </Link>
-        <Link to="/Counter1">
-          <p
+
+        <Link to="/Counter1" >
+          <p          
             className={`${activeTab === "Counter1" ? "active" : ""}`}
             onClick={() => setActiveTab("Counter1")}
           >
