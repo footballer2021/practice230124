@@ -8,9 +8,9 @@ const Counter1 = () => {
     <>
         <Header/>
         <Frame >
-        <CounterContext >
-                <CounterPart />
-        </CounterContext>
+          <CounterContext >
+            <CounterPart />
+          </CounterContext>
         </Frame>
     </>
   )
