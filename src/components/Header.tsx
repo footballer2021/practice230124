@@ -43,6 +43,14 @@ const Header = () => {
             Counter3
           </p>
         </Link>
+        <Link to="/Counter4">
+          <p
+            className={`${activeTab === "Counter4" ? "active" : ""}`}
+            onClick={() => setActiveTab("Counter4")}
+          >
+            Counter4
+          </p>
+        </Link>
       </div>
     </SHeader>
   )
